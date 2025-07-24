@@ -1,12 +1,10 @@
 use std::collections::HashSet;
-use std::env;
 use std::fs::File;
 use std::io::{self, Read, Write};
-use std::path::PathBuf;
 
 fn main() -> io::Result<()> {
-    let home = env::var("HOME").expect("Cannot find HOME environment variable");
-    let his_file = PathBuf::from(home).join(".histfile");
+    let home = std::env::home_dir().expect("Cannot find HOME environment variable");
+    let his_file = home.join(".histfile");
 
     if !his_file.exists() {
         println!("The `.histfile` does not exist");
